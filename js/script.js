@@ -233,7 +233,7 @@ function getArtifactData(ref) {
 
                 }
                 // simply has an array of ALL the artifacts from this module.
-                self.artifactsWithHeaders = allArtifacts.map(function (aa) {
+                self.artifactsWithHeaders = _.map(allArtifacts, function (aa) {
                     currentHeader = aa.values[RM.Data.Attributes.IS_HEADING] ? aa : currentHeader;
                     return ({
                         id: aa.values[RM.Data.Attributes.IDENTIFIER],
