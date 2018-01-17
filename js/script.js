@@ -248,7 +248,7 @@ function getArtifactData(ref) {
                     })
                 }).filter(function (obj) {
                     // if the artifact does not have a header under it or if it is a header, we don't care.
-                    return obj.headerInfo !== null || ignore;
+                    return obj.headerInfo !== null || obj.ignore;
                 }).filter(function (obj) {
                     // if the artifact does not have a single a tag, we don't care.
                     return obj.aTags.length !== 0;
