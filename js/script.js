@@ -219,9 +219,7 @@ function getArtifactData(ref) {
             if (opResult.code === RM.OperationResult.OPERATION_OK) {
                 var currentHeader = null;
                 allArtifacts = {};
-                for (var i = 0; i < opResult.data.length; i++) {
-                    var artf = opResult.data[i];
-                    
+                opResult.data.forEach(function (artf) {
                     // only add an attribute if it doesn't have a table.
                     var tempHtml = artf.values[RM.Data.Attributes.PRIMARY_TEXT];
                     var tempwrapper = document.createElement("div");
@@ -230,11 +228,14 @@ function getArtifactData(ref) {
                     if (table.length === 0) {
                         allArtifacts[artf.values[RM.Data.Attributes.IDENTIFIER]] = artf;
                     }
-
-                }
+                });
                 // simply has an array of ALL the artifacts from this module.
-                self.artifactsWithHeaders = _.map(allArtifacts, function (aa) {
+                self.artifactsWithHeaders = opResult.data.map(function (aa) {
                     currentHeader = aa.values[RM.Data.Attributes.IS_HEADING] ? aa : currentHeader;
+                    var tempHtml = aa.values[RM.Data.Attributes.PRIMARY_TEXT];
+                    var tempwrapper = document.createElement("div");
+                    tempwrapper.innerHTML = tempHtml;
+                    var table = $(tempwrapper).find("table");
                     return ({
                         id: aa.values[RM.Data.Attributes.IDENTIFIER],
                         aTags: self.getATags(
@@ -242,11 +243,12 @@ function getArtifactData(ref) {
                         ),
                         isHeading: aa.values[RM.Data.Attributes.IS_HEADING] == true,
                         headerInfo: _.isEqual(aa, currentHeader) ? null : currentHeader,
-                        uri: ref.uri
+                        uri: ref.uri,
+                        ignore: table.length !== 0
                     })
                 }).filter(function (obj) {
                     // if the artifact does not have a header under it or if it is a header, we don't care.
-                    return obj.headerInfo !== null;
+                    return obj.headerInfo !== null || ignore;
                 }).filter(function (obj) {
                     // if the artifact does not have a single a tag, we don't care.
                     return obj.aTags.length !== 0;
