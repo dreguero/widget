@@ -219,7 +219,9 @@ function getArtifactData(ref) {
             if (opResult.code === RM.OperationResult.OPERATION_OK) {
                 var currentHeader = null;
                 allArtifacts = {};
-                opResult.data.forEach(function (artf) {
+                for (var i = 0; i < opResult.data.length; i++) {
+                    var artf = opResult.data[i];
+                    
                     // only add an attribute if it doesn't have a table.
                     var tempHtml = artf.values[RM.Data.Attributes.PRIMARY_TEXT];
                     var tempwrapper = document.createElement("div");
@@ -228,9 +230,10 @@ function getArtifactData(ref) {
                     if (table.length === 0) {
                         allArtifacts[artf.values[RM.Data.Attributes.IDENTIFIER]] = artf;
                     }
-                });
+
+                }
                 // simply has an array of ALL the artifacts from this module.
-                self.artifactsWithHeaders = opResult.data.map(function (aa) {
+                self.artifactsWithHeaders = allArtifacts.map(function (aa) {
                     currentHeader = aa.values[RM.Data.Attributes.IS_HEADING] ? aa : currentHeader;
                     return ({
                         id: aa.values[RM.Data.Attributes.IDENTIFIER],
