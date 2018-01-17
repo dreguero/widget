@@ -1,0 +1,61 @@
+/* The actions button mimics the buttons seen around. */
+.actionContainer {
+  text-align: center;
+}
+/*Core look and feel of button.*/
+.actionsButton {
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  -moz-box-sizing: border-box;
+  transition: opacity 150ms ease-out;
+  border: 1px solid white;
+  background-color: #3087b3;
+  font-weight: bold;
+  padding: 4px 3px 4px 3px;
+}
+/*Cancel button is gray.*/
+#cancel.actionsButton {
+  background: gray;
+}
+/* The text inside the button is wrapped with a span. */
+.actionsButton span {
+  color: white;
+  padding: 0 8px 0 8px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* The actions button is darker on hover */
+.actionsButton:hover {
+  background-color: #266d90;
+}
+
+/* Loading icon stuff. Believe it or not, this does work in IE ! */
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 20px;
+  height: 20px;
+  margin: 10px auto;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

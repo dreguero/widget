@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module specificationVersion="2.0">
+    <ModulePrefs title="Requirement Table Widget">
+        <Require feature="com.ibm.rdm.rm.api"></Require>
+        <Require feature="dynamic-height" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+           <html>
+                <head>
+                    <link rel="stylesheet" type="text/css" href="./css/style.css">
+                </head>
+                <body>
+                    <div id="artifactUpdateWidget">Choose an Artifact to update</div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+                    <script type="text/javascript" src="./js/script.js"></script>
+                </body>
+            </html>
+        ]]>
+    </Content>
+</Module> 
