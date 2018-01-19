@@ -245,7 +245,7 @@ function getArtifactData(ref) {
                     // if it has a table, ignore.
                     var tempwrapper = document.createElement("div");
                     tempwrapper.innerHTML = obj.primaryText;
-                    return $(tempwrapper).find("table").length !== 0;
+                    return $(tempwrapper).find("table").length === 0;
                 });
             }
         }
