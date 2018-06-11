@@ -240,6 +240,8 @@ function getArtifactData(ref) {
                 }).filter(function(obj){
                     // if the artifact does not have a single a tag, we don't care.
                     return obj.aTags.length !== 0;
+                }).filter(function(obj){
+                    return !obj.headerInfo.values[RM.Data.Attributes.PRIMARY_TEXT].includes("Input Requirement Traceability Table");
                 });
             }
         }
